@@ -27,29 +27,8 @@ import Unitful.ħ, Unitful.me, Unitful.ϵ0
 
 
 
-# ϵ_natural(k, σ, hbarm0_natural, Δ_natural) = (k[1]^2 + k[2]^2 + k[3]^2) * hbarm0_natural + σ * Δ_natural * k[1] * k[3] * (k[1]^2 - 3k[2]^2)
-
-# ϵ_natural(k, σ, hbarm0_natural, Δ_natural) = (k[1]^2 + k[2]^2 + k[3]^2) * hbarm0_natural + σ * Δ_natural * (k[1]^2 + k[2]^2 + k[3]^2)^2
-
-fx(x, y) = sin(x) + sin(x / 2) * cos(sqrt(3) * y / 2)
-fy(x, y) = sqrt(3) * cos(x / 2) * sin(sqrt(3) * y / 2)
-
-# ϵ_natural(k, σ, Js, Δ) = (cos(k[1]) + 2cos(k[1] / 2) * cos(sqrt(3) * k[2] / 2) + cos(k[3])) * Js + σ * Δ * sin(k[3]) * fy(k[2], k[1]) * (fy(k[2], k[1])^2 - 3fx(k[2], k[1])^2) + 4
-
 ϵ_natural(k, σ, Js, Δ) = (k[1]^2 + k[2]^2 + k[3]^2) * Js + σ * Δ * k[1] * k[3] * (k[1]^2 - 3k[2]^2)
 kmax(Js, Δ, Ef) = 2sqrt(2Js - sqrt(4Js^2 - 3sqrt(3) * Ef * Δ)) / sqrt(Δ) / 3^(3 / 4)
-
-
-# ϵ_natural(k, σ, Js, Δ) = (3 - cos(k[1]) - cos(k[2]) - cos(k[3])) * Js + σ * Δ * sin(k[1]) * sin(k[2]) * (cos(k[1]) - cos(k[2]))
-
-
-# ϵ_natural(k, σ, Js, Δ) = (3 - cos(k[1]) - cos(k[2]) - cos(k[3])) * Js + σ * Δ * k[1] * k[2] * (k[1]^2 - k[2]^2)
-
-
-# ϵ_natural(k, σ, hbarm0_natural, Δ_natural) = (k[1]^2 + k[2]^2 + k[3]^2) * hbarm0_natural + σ * Δ_natural * (k[3] * k[1] + k[3] * k[2])
-
-# ϵ_natural(k, σ, hbarm0_natural, Δ_natural) = (k[1]^2 + k[2]^2 + k[3]^2) * hbarm0_natural + σ * Δ_natural * k[1] * k[2]
-
 
 
 
@@ -80,9 +59,6 @@ end
 
 
 
-##
-# natural units:
-# eps = Js k^2 + Delta k^4
 ##
 Ef = 1
 Js = 1
@@ -146,27 +122,27 @@ fig.savefig(joinpath(save_dir, "g-wave.pdf"))
 fig
 
 
-##
-fig, axs = plt.subplots(3, 1)
-ax = axs[1]
-ax.errorbar(ωrange, .-resup .|> real, color="C0", yerr=errup)
-ax.plot(ωrange, .-resup .|> imag, color="C0", linestyle="dashed")
-ax.errorbar(ωrange, .-resdown .|> real, color="C1", yerr=errdown)
-ax.plot(ωrange, .-resdown .|> imag, color="C1", linestyle="dashed")
+# ##
+# fig, axs = plt.subplots(3, 1)
+# ax = axs[1]
+# ax.errorbar(ωrange, .-resup .|> real, color="C0", yerr=errup)
+# ax.plot(ωrange, .-resup .|> imag, color="C0", linestyle="dashed")
+# ax.errorbar(ωrange, .-resdown .|> real, color="C1", yerr=errdown)
+# ax.plot(ωrange, .-resdown .|> imag, color="C1", linestyle="dashed")
 
-ax.set_xlabel(L"\omega")
-ax.set_ylabel(L"\epsilon")
+# ax.set_xlabel(L"\omega")
+# ax.set_ylabel(L"\epsilon")
 
-ax = axs[2]
-ax.axhline(0, color="black")
-die = 1.0 .- vq / norm(q)^2 .* (resup + resdown)
-ax.errorbar(ωrange, die .|> real, color="C0", yerr=errup)
+# ax = axs[2]
+# ax.axhline(0, color="black")
+# die = 1.0 .- vq / norm(q)^2 .* (resup + resdown)
+# ax.errorbar(ωrange, die .|> real, color="C0", yerr=errup)
 
-ax = axs[3]
-chizz = (resup .+ resdown - 4vq .* resup .* resdown) ./ die
-ax.errorbar(ωrange, die .|> imag, color="C0", yerr=errup)
+# ax = axs[3]
+# chizz = (resup .+ resdown - 4vq .* resup .* resdown) ./ die
+# ax.errorbar(ωrange, die .|> imag, color="C0", yerr=errup)
 
 
-ax.axhline(0)
+# ax.axhline(0)
 
-fig
+# fig

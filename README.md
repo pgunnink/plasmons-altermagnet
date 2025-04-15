@@ -5,11 +5,14 @@ This code base is using the [Julia Language](https://julialang.org/) and
 to make a reproducible scientific project named
 > plasmons-altermagnet
 
+The figures are produced by the files `3D.jl`, `3D_supp.jl`, `2D.jl` and `g-wave.jl` in the `scripts` directory. These scripts will output the figures directly in the `papers/figures` directory. 
+
+
 To (locally) reproduce this project, do the following:
 
-0. Download this code base. Notice that raw data are typically not included in the
+1. Download this code base. Notice that raw data are typically not included in the
    git-history and may need to be downloaded independently.
-1. Open a Julia console and do:
+2. Open a Julia console and do:
    ```
    julia> using Pkg
    julia> Pkg.add("DrWatson") # install globally, for using `quickactivate`
