@@ -1,0 +1,62 @@
+        - using DrWatson
+        - @quickactivate
+        - using Revise
+        - using Parameters
+        - using PyPlot
+        - using HCubature
+        - using Unitful
+        - using ProgressMeter
+        - using LinearAlgebra
+        - import Unitful.ħ, Unitful.me, Unitful.ϵ0
+        - includet(scriptsdir("style.jl"))
+        - 
+        - @with_kw mutable struct ParamsPlasmon_G_wave
+        -     m0 = 0.4me
+        -     Ef = 0.5u"eV"
+        -     kF = sqrt(2m0 * Ef) / ħ
+        -     Δ = 0.4ħ^2 / m0 / kF^2
+        -     T = 1u"K"
+        -     η = 1u"μeV"
+        -     ϵ = 1
+        -     hbarm0_natural = ħ^2 / 2m0 / Ef * kF^2 |> upreferred
+        -     Δ_natural = Δ / Ef * kF^4 |> upreferred
+        -     vq_natural = Unitful.q^2 / (ϵ * ϵ0) * kF / Ef |> upreferred
+        - end
+        - 
+        - p = ParamsPlasmon_G_wave()
+        - ##
+        - 
+        - ϵ(k, σ, p) = (k[1]^2 + k[2]^2 + k[3]^2) * ħ^2 / 2p.m0 + σ * p.Δ * k[1] * k[2] * (k[1]^2 - k[2]^2)
+        - 
+        - 
+        0 ϵ_natural(k, σ, hbarm0_natural, Δ_natural) = (k[1]^2 + k[2]^2 + k[3]^2) * hbarm0_natural + σ * Δ_natural * k[1] * k[2] * (k[1]^2 - k[2]^2)
+        - 
+        - 
+        - ##
+        - function f_iter(k, kq, ω, q, σ, ħm, Δ)
+        0     kq .= k .+ q
+        0     ϵk = ϵ_natural(k, σ, ħm, Δ)
+        0     ϵkq = ϵ_natural(kq, σ, ħm, Δ)
+        0     if ϵk > 1
+        0         return 0im
+        -     else
+        0         return 1 / (ω + ϵk - ϵkq + 1im * 1e-4) + 1 / (-ω + ϵk - ϵkq - 1im * 1e-4)
+        -     end
+        - end
+        - 
+        - ##
+        - function χ0_natural(ω, q, σ, Δ, ħm)
+       80     kq = Vector{Float64}(undef, 3)
+      160     hcubature(x -> f_iter(x, kq, ω, q, σ, Δ, ħm), [-1.0, -1.0, -1.0], [1.0, 1.0, 1.0], initdiv=1, norm=x -> norm(real(x)), rtol=1e-2, maxevals=Int(1e8))
+        - end
+        - 
+        - 
+        - 
+        - χ0_natural(ω, q, σ, p::ParamsPlasmon_G_wave) = χ0_natural(ω, q, σ, p.hbarm0_natural, p.Δ_natural)
+        - 
+        - testq = 0.05p.kF .* [1, 0, 0]
+        - testω = p.Ef / 10 / ħ
+        - testq_natural = testq ./ p.kF .|> upreferred
+        - testω_natural = testω / (p.Ef / ħ) |> upreferred
+        - 
+        - @time χ0_natural(testω_natural, testq_natural, 1, p.hbarm0_natural, p.Δ_natural)

@@ -1,0 +1,114 @@
+\documentclass[aps,prb,reprint,twocolumns,superscriptaddress,nofootinbib]{revtex4-2}
+\usepackage[utf8]{inputenc}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-feynman}
+\usepackage{hyperref}
+\usepackage{color}
+\hypersetup{colorlinks=true}
+\usepackage{graphicx}
+\graphicspath{{figures}}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{chemformula}
+\usepackage[capitalise]{cleveref}
+\usepackage{siunitx}
+\newcommand{\hc}{\text{h.c.}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\pg}[1]{\textcolor{red}{PG: #1}}
+\DeclareMathOperator{\sign}{sign}
+\begin{document}
+	\title{Spin-polarized plasmons in two-dimensional altermagnets}
+	\date{\today}
+	
+	\author{Pieter M. Gunnink}
+	\email{pgunnink@uni-mainz.de}
+	\affiliation{Institute of Physics, Johannes Gutenberg-University Mainz, Staudingerweg 7, Mainz 55128, Germany}
+	\begin{abstract}
+		Test
+	\end{abstract}
+	
+	\maketitle
+	
+	
+	\section{Hydrodynamics}
+To describe the hydrodynamics of electrons in altermagnets we employ the Boltzmann equation \cite{lucas},
+\begin{equation}
+	\partial_t f_\sigma + \bm v_{\bm k;\sigma} \cdot \nabla_{\bm r}f_\sigma - e \bm E \cdot \nabla_{\bm k}f_\sigma = \mathcal C[f_\sigma],
+\end{equation}
+where $\bm E$ is the internal Coulomb force, which is two dimensions is
+\begin{equation}
+	\bm E = -\ii\sum_\sigma \frac{\delta n_\sigma}{2\epsilon k}\bm k,
+\end{equation} 	 
+where $\delta n_\sigma\equiv n^\sigma - n_0^\sigma$ is the deviation from the equilibrium density, which importantly couples both spin channels.	Finally, $\mathcal C[f_\sigma]$ is a collision integral which will relax the distribution to an equilibrium distribution function
+\begin{equation}
+	f_0^\sigma = n_F\left(- \sum_\eta \lambda_\sigma^\eta X^\eta_{\sigma;\bm k}  \right),
+\end{equation}
+where $X^\eta_{\sigma;\bm k}$ is the amount of conserved quantity $\eta$ carried by particles with spin $\sigma$ and momentum $\bm k$, and $\lambda^\eta_\sigma$ are the corresponding free parameters. We now assume spin to be conserved, and we take the conserved quantities to be energy, momentum and charge, such that we have 
+\begin{equation}
+	X_\sigma = \left(\epsilon_{\bm k;\sigma}, \bm k, e\right);\quad \lambda_\sigma = \left(-\frac{1}{k_B T}, \frac{\bm u}{k_B T}, \frac{\mu}{k_B T}\right).
+\end{equation}
+We can now directly write down the conservation laws as
+\begin{equation}
+	\partial_t \rho^\eta_\sigma(\bm r,t) + \nabla_{\bm r} \cdot \bm J^\eta_\sigma(\bm r) = 0,
+\end{equation}
+where 
+\begin{equation}
+	\rho^\eta_\sigma(\bm r,t) = \int \frac{d^2k}{(2\pi)^2} X^\eta_\sigma f^0_\sigma
+\end{equation}
+and \begin{equation}
+	\bm J^\eta_\sigma(\bm r,t) = \int \frac{d^2k}{(2\pi)^2} X^\eta_\sigma \bm v_{\sigma;\bm k} f^0_\sigma
+\end{equation}
+are the density and currents associated with each conserved quantity. We now insert the three conserved quantities and the altermagnetic dispersion relation, and evaluate the resulting integrals at zero temperature. We find the three conservation laws as
+\begin{align}
+	\partial_t n^\sigma + n_0 \partial_\beta u_\beta^\sigma &= 0 \\
+	\partial_t p^\sigma_\alpha + \partial_\beta \Pi_{\alpha\beta} &=  -E_\alpha n^\sigma  \\ 
+	\partial_t \epsilon^\sigma + \partial_\beta J^{\epsilon;\sigma}_{\beta} &= 0
+\end{align}
+where $n_\sigma=\langle f_\sigma^0\rangle$, $p^\sigma_\alpha\equiv\langle k_\alpha f_\sigma^0\rangle$ and $\epsilon^\sigma\equiv\langle \epsilon_{\bm k;\sigma}f_\sigma^0\rangle$. Furthermore,
+\begin{equation}
+	\Pi^{\alpha\beta} = \delta_{\alpha\beta} P^\alpha_\sigma +O(u^2) %+ n_0 m_\sigma^\alpha u^\alpha u^\beta
+\end{equation}
+and \begin{equation}
+	J^{\epsilon;\sigma}_\beta =  u_\beta^\sigma (P_\beta+\frac12\sum_\alpha P_\alpha^\sigma)+O(u^3).
+\end{equation}
+We now define the charge and spin channels as $\eta^c\equiv \eta^\uparrow+\eta^\downarrow$ and $\eta^s\equiv \eta^\uparrow+\eta^\downarrow$ for $\eta\in\{n,p,\epsilon\}$. Furthermore, we are interested in fluctuations around a homogenous solutions, and thus write $n^{c,s}=n_0^{c,s}+\delta n^{c,s}$, $\epsilon^{c,s}=\epsilon_0^{c,s}+\delta \epsilon^{c,s}$ and assume small $\bm u$. We make use of ??? to eliminate the 
+
+We make the ansatz $ \eta^{c,s}=\eta^{c,s}(\bm q,\omega)e^{\ii\bm q\cdot \bm r-\ii\omega t}$ and and look for longitudinal propagating modes, such that $\bm u\parallel \bm q$ in linearized equations of motion
+%	\begin{align}
+	%		-\ii\omega \delta n^c + \ii n_0 q u_\parallel^c &=0 \\
+	%		-\ii\omega \delta n^s + \ii n_0 q u_\parallel^s &=0 \\
+	%		-\ii\omega m_\alpha^\uparrow u^\uparrow_\alpha + \ii q_\alpha \delta P_\alpha^\uparrow &= \ii \frac{\bm q}{2\epsilon q} n_0\delta n^c \\ 
+	%		-\ii\omega m_\alpha^\downarrow u^\downarrow_\alpha + \ii q_\alpha \delta P_\alpha^\downarrow &= \ii \frac{\bm q}{2\epsilon q} n_0\delta n^c \\ 
+	%		-\ii\omega \delta\epsilon^\uparrow + \ii q_\parallel u_\alpha^\uparrow\left(
+	%		P_\parallel + P_0  \right) &=0 \\ 
+	%		-\ii\omega \delta\epsilon^\downarrow + \ii q_\parallel u_\alpha^\downarrow\left(
+	%		P_\parallel + P_0  \right) &=0
+	%	\end{align}
+%	which can be written as
+\begin{align}
+	-\ii\omega \delta n^\uparrow + \ii n_0 q u_\parallel^\uparrow &=0 \\
+	-\ii\omega \delta n^\downarrow + \ii n_0 q u_\parallel^\downarrow &=0 \\
+	-\ii\omega m_0 u^\uparrow_\parallel + \ii q_\parallel \delta \epsilon^c &= \ii \frac{1}{2\epsilon} n_0(\delta n^\uparrow + \delta n^\downarrow) \\ 
+	-\ii\omega m_0 u^\downarrow_\parallel + \ii q_\parallel \delta \epsilon^\downarrow &= \ii \frac{1}{2\epsilon} n_0(\delta n^\uparrow + \delta n^\downarrow) \\ 
+	-\ii\omega \delta\epsilon^\uparrow + \ii q_\parallel u_\parallel^\uparrow\left(
+	P_{0;\parallel} + \epsilon_0^\uparrow  \right) &=0 \\ 
+	-\ii\omega \delta\epsilon^\downarrow + \ii q_\parallel u_\parallel^\downarrow\left(
+	P_{0;\parallel} + \epsilon_0^\downarrow  \right) &=0
+\end{align}
+\begin{align}
+	-\ii\omega \delta n^c + \ii n_0 q u_\parallel^c &=0 \\
+	-\ii\omega \delta n^s + \ii n_0 q u_\parallel^s &=0 \\
+	-\ii\omega m_0 u^c\parallel + \ii q_\parallel \delta \epsilon^c &= \ii \frac{1}{\epsilon} n_0\delta n^c \\ 
+	-\ii\omega m_0 u^s\parallel + \ii q_\parallel \delta \epsilon^s &= 0 \\ 
+	-\ii\omega \delta\epsilon^c + \ii q_\parallel u_\parallel^c\left(
+	P_{0;\parallel} + \epsilon_0^c  \right) &=0 \\ 
+	-\ii\omega \delta\epsilon^s + \ii q_\parallel u_\parallel^s\left(
+	P_{0;\parallel} + \epsilon_0^s  \right) &=0
+\end{align}
+where we have neglected second order 
+
+
+\end{document}
