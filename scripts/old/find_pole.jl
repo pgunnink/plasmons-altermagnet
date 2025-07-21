@@ -51,7 +51,7 @@ ax2.plot(qratio_range, [Q(x, y) for (x, y) in zip(res, qratio_range)], color="C2
 
 ax2.set_ylabel(L"Q")
 ax2.set_xlabel(L"\delta_q")
-ax.set_ylabel(L"\tilde v_s")
+ax.set_ylabel(L"\tilde v_d")
 ax.legend()
 # ax.set_ylim(extrema(res)...)
 ax.margins(x=0)
@@ -111,7 +111,7 @@ ax2.plot(qratio_range, [Q(x, y) for (x, y) in zip(res, qratio_range)], color="C2
 
 ax2.set_ylabel(L"Q")
 ax2.set_xlabel(L"\delta_q")
-ax.set_ylabel(L"v_s/v_F")
+ax.set_ylabel(L"v_d/v_F")
 # ax.legend()
 ax.set_xlabel(L"\delta_q")
 twinx = ax.secondary_xaxis("top", functions=(delta_to_angle, angle_to_delta))

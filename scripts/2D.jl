@@ -180,7 +180,7 @@ twinx = axs[1].secondary_xaxis("top", functions=(angle_to_delta, delta_to_angle)
 # twinx.set_xticks([0.2, 0.3])
 twinx.set_xlabel(L"\eta_{\mathrm{maj}}(\theta)/\eta_{\mathrm{min}}(\theta)")
 axs[2].set_xlabel(L"\theta")
-axs[1].set_ylabel(L"v_s/v_F")
+axs[1].set_ylabel(L"v_d/v_F")
 axs[2].set_ylabel(L"Q")
 
 
