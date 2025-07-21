@@ -38,7 +38,7 @@ angle_to_delta, delta_to_angle = get_conversions(p)
 ax2.plot(θrange .|> rad2deg, Q_N, color="C1", linestyle="-")
 ax2.plot(θrange .|> rad2deg, Q_a, color="C1", linestyle="--")
 ax2.set_xlabel(L"\theta")
-ax.set_ylabel(L"v_s/v_F")
+ax.set_ylabel(L"v_d/v_F")
 ax2.set_ylabel(L"Q")
 # twinx.set_xticks(twinx.get_xticks())
 

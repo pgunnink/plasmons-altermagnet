@@ -16,6 +16,26 @@ function get_conversions(p)
     return angle_to_delta, delta_to_angle
 end
 ## numerical functions
+function first_pole(q, p)
+    edges = (0.5ωplus(q, -1, p) * ħ / p.Ef |> upreferred, ωplus(q, -1, p) * ħ / p.Ef |> upreferred)
+    poles = find_zeros(x -> dielectric(x * p.Ef / ħ, q, p) |> real |> upreferred, edges...)
+    if length(poles) > 0
+        return poles[1]
+    else
+        return NaN
+    end
+end
+
+function third_pole(q, p)
+    edges = (ωplus(q, 1, p) * ħ / p.Ef |> upreferred, 2ωplus(q, 1, p) * ħ / p.Ef |> upreferred)
+    poles = find_zeros(x -> dielectric(x * p.Ef / ħ, q, p) |> real |> upreferred, edges...)
+    if length(poles) > 0
+        return poles[1]
+    else
+        return NaN
+    end
+end
+
 function plasmon_pole(q, p)
     edges = (ωplus(q, -1, p) * ħ / p.Ef |> upreferred, ωplus(q, 1, p) * ħ / p.Ef |> upreferred)
     poles = find_zeros(x -> dielectric(x * p.Ef / ħ, q, p) |> real |> upreferred, edges...)

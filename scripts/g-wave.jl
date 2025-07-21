@@ -122,27 +122,3 @@ fig.savefig(joinpath(save_dir, "g-wave.pdf"))
 fig
 
 
-# ##
-# fig, axs = plt.subplots(3, 1)
-# ax = axs[1]
-# ax.errorbar(ωrange, .-resup .|> real, color="C0", yerr=errup)
-# ax.plot(ωrange, .-resup .|> imag, color="C0", linestyle="dashed")
-# ax.errorbar(ωrange, .-resdown .|> real, color="C1", yerr=errdown)
-# ax.plot(ωrange, .-resdown .|> imag, color="C1", linestyle="dashed")
-
-# ax.set_xlabel(L"\omega")
-# ax.set_ylabel(L"\epsilon")
-
-# ax = axs[2]
-# ax.axhline(0, color="black")
-# die = 1.0 .- vq / norm(q)^2 .* (resup + resdown)
-# ax.errorbar(ωrange, die .|> real, color="C0", yerr=errup)
-
-# ax = axs[3]
-# chizz = (resup .+ resdown - 4vq .* resup .* resdown) ./ die
-# ax.errorbar(ωrange, die .|> imag, color="C0", yerr=errup)
-
-
-# ax.axhline(0)
-
-# fig
